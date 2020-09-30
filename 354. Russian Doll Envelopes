@@ -1,0 +1,44 @@
+#notes:
+#with envelop[w,h]  we sort by w from small to large first, so in w, by order it will fit . 
+# then for l, we order reverse order, because say we have [3 4],[3,5], only one will fit and you want to make sure while w ==3, only one length from L will fit into enevelope, 
+# thus when you pick from w from small to large, you want to only pick one size from L and skip to next W, so it became the longest non-continues increase subarry.
+# 
+
+
+class Solution(object):
+    def maxEnvelopes(self, envelopes):
+        """
+        :type envelopes: List[List[int]]
+        :rtype: int
+        """
+        
+        if len(envelopes)<2:
+            return len(envelopes)
+        
+        def _com(a,b):
+            if a[0] < b[0]:
+                return -1
+            elif a[0] > b[0]:
+                return 1
+            else:
+                if a[1] < b[1]:
+                    return 1
+                else:
+                    return -1
+        
+        envelopes = sorted(envelopes, cmp=_com)
+
+        data = [y for x , y in envelopes]
+        print(data)
+
+        dp = [ 1 for _ in range(len(data))]
+        for i in range(len(data)):
+            if i ==0:
+                dp[0] = 1
+            else:
+                maxval = -sys.maxint
+                for j in range(0, i):
+                    if data[j]< data[i]:
+                        dp[i] = max(dp[i], dp[j]+1)
+        print(dp)
+        return max(dp)
