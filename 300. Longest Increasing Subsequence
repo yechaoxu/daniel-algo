@@ -1,0 +1,48 @@
+# 1st solution, dp n^n, do brute force and list all possible choices, 
+#loop all element and keep dp[i] as at each i element what is the longest subarry, and look back from 0 to i-1 if any past subarry can be extend and pick the max
+# current solution do binary search, it replace any possible SMALLEST number that is larger than current nums[i]  and maintain a ordered list 
+# if have a larger element append to the end to extend the scope. 
+# https://stackoverflow.com/questions/6129682/longest-increasing-subsequenceonlogn
+11
+
+We need to maintain lists of increasing sequences.
+
+In general, we have set of active lists of varying length. We are adding an element A[i] to these lists. We scan the lists (for end elements) in decreasing order of their length. We will verify the end elements of all the lists to find a list whose end element is smaller than A[i] (floor value).
+
+Our strategy determined by the following conditions,
+1. If A[i] is smallest among all end candidates of active lists, we will start new active list of length 1.
+2. If A[i] is largest among all end candidates of active lists, we will clone the largest active list, and extend it by A[i].
+3. If A[i] is in between, we will find a list with largest end element that is smaller than A[i]. Clone and extend this list by A[i]. We will discard all other lists of same length as that of this modified list.
+
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        data = nums
+        dp = [ ]
+        for num in nums:
+            if not dp:
+                dp.append(num)
+            elif num < dp[0]:
+                dp[0] = num
+            elif num > dp[-1]:
+                dp.append(num)
+            else:
+                
+                left = 0
+                right = len(dp)-1
+                while left<right:
+                    mid = (right+left)/2
+                    
+                    if dp[mid] < num:
+                        left = mid+1
+                    else:
+                        right = mid
+                print(dp, left,num)
+                dp[left] = num
+        print(dp)
+        return len(dp)
