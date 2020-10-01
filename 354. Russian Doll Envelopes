@@ -2,7 +2,7 @@
 #with envelop[w,h]  we sort by w from small to large first, so in w, by order it will fit . 
 # then for l, we order reverse order, because say we have [3 4],[3,5], only one will fit and you want to make sure while w ==3, only one length from L will fit into enevelope, 
 # thus when you pick from w from small to large, you want to only pick one size from L and skip to next W, so it became the longest non-continues increase subarry.
-# 
+# after that it became find a larest continsout subarry dp question
 
 
 class Solution(object):
@@ -28,17 +28,30 @@ class Solution(object):
         
         envelopes = sorted(envelopes, cmp=_com)
 
-        data = [y for x , y in envelopes]
-        print(data)
+        nums = [y for x , y in envelopes]
+        if not nums:
+            return 0
 
-        dp = [ 1 for _ in range(len(data))]
-        for i in range(len(data)):
-            if i ==0:
-                dp[0] = 1
+        dp = [ ]
+        for num in nums:
+            if not dp:
+                dp.append(num)
+            elif num < dp[0]:
+                dp[0] = num
+            elif num > dp[-1]:
+                dp.append(num)
             else:
-                maxval = -sys.maxint
-                for j in range(0, i):
-                    if data[j]< data[i]:
-                        dp[i] = max(dp[i], dp[j]+1)
-        print(dp)
-        return max(dp)
+                
+                left = 0
+                right = len(dp)-1
+                while left<right:
+                    mid = (right+left)/2
+                    
+                    if dp[mid] < num:
+                        left = mid+1
+                    else:
+                        right = mid
+
+                dp[left] = num
+
+        return len(dp)
