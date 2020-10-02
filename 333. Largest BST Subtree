@@ -1,3 +1,31 @@
+# this solution goes from bottom up, and get the max/min range of all node under each node, resurvively check the condition, 
+#if doesn't match, set max/min value to invalid bst and return subtree length
+class Solution(object):
+    def largestBSTSubtree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def _dfs(root):
+            if not root:
+                # return number of node, max value, min val. 
+                # we want to use the max val from left, and min val from right to ensure it is a valid bst
+                #       node, max val,    small val
+                return [0, -sys.maxint, sys.maxint]
+            else:
+                leftdata = _dfs(root.left)
+                rightdata = _dfs(root.right)
+                
+                if leftdata[1]< root.val < rightdata[2]:
+                    # we need to check if smallest below this node, and largest , is still under the range
+                    return [leftdata[0] + rightdata[0] +1, max(root.val,rightdata[1]), min(root.val,leftdata[2]) ]
+                else:
+                    return [max(leftdata[0], rightdata[0]) , sys.maxint, -sys.maxint]
+        data = _dfs(root)
+        return data[0]
+
+
+
 # check each node if it is valid bst, then find the max nodes under it. very ineffcient
 
 # Definition for a binary tree node.
