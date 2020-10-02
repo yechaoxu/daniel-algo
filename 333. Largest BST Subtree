@@ -1,0 +1,36 @@
+# check each node if it is valid bst, then find the max nodes under it. very ineffcient
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def largestBSTSubtree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def validbst(root, minval, maxval):
+            if not root:
+                return True
+            if minval < root.val < maxval:
+                return validbst(root.left, minval, root.val) and validbst(root.right, root.val, maxval)
+            
+            else:
+                return False
+        
+        def _count(root):
+            if not root:
+                return 0
+            else:
+                return 1+_count(root.left) + _count(root.right)
+        
+        
+        if not root:
+            return 0
+        if validbst(root, -sys.maxint, sys.maxint):
+            return _count(root)
+        else:
+            return max(self.largestBSTSubtree(root.left),self.largestBSTSubtree(root.right) )
