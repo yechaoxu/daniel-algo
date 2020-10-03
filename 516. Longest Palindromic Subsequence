@@ -1,0 +1,24 @@
+# i always find difficult for such dp issue, its actually just brute force. 
+# we create a dp, for dp[i][j] means what is the longest palidrome inside this substring. 
+# it has two case, if s[i] == s[j], it is dp[i-1][j+1] +2, otherwise , it is the max of either remove one from i, by i-1, or remove one from j, by j+1
+# because we increase i , and backtrace j from i-1 until 0
+
+
+class Solution(object):
+    def longestPalindromeSubseq(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        self.dp = [[0 for _ in range(len(s))] for _ in range(len(s))]
+        
+        
+        for i in range(len(s)):
+            self.dp[i][i] = 1
+            for j in range(i-1, -1, -1):
+                if s[i] == s[j]:
+                    self.dp[i][j] = self.dp[i-1][j+1]+2
+                else:
+                    self.dp[i][j] = max(self.dp[i-1][j], self.dp[i][j+1])
+        #print(self.dp) 
+        return self.dp[-1][0]
