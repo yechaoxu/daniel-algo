@@ -1,0 +1,26 @@
+
+# initial approach is use a heap, and resize arr to be center to 0 instead of k and pop k smallest element. 
+# but binary search is just intesting here, you define left and right, make sure right = len(s)-k , as it is the most right possible you can go. 
+# then you do the bouncing, since smaller is prefereed when tie, you will expect center to be at ----x-----, so x-left vs right -x , 
+# in the end left is your start point when cut and return the list
+
+
+class Solution(object):
+    def findClosestElements(self, arr, k, x):
+        """
+        :type arr: List[int]
+        :type k: int
+        :type x: int
+        :rtype: List[int]
+        """
+        left = 0
+        right = len(arr)-k
+        while left < right:
+            mid = (right+left)/2
+            print(mid,k)
+            if x-arr[mid] > arr[mid+k]-x:
+                left = mid+1
+            else:
+                right = mid
+        
+        return arr[left:left+k]
