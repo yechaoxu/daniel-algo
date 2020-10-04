@@ -16,3 +16,11 @@ Database Index:
         the value 24538 becomes 83542 in the index. Reversing the key value is particularly useful for indexing data such as sequence numbers,
         where each new key value is greater than the prior value, i.e., values monotonically increase.
         Reverse key indexes have become particularly important in high volume transaction processing systems because they reduce contention for index blocks
+        
+Consistent hashing
+        by simple approach, hash val % server number will evenly distribute the work load, but this bring an issue when one server is down or newly add. All hashing value will change
+        and need to redo. thus we introduce the consisten hashing, it is a ring shape which each server take a node. when a request comes, it get the hash value,
+        land on the ring at 360 degree, and go clock wise to land on the 1st available server. 
+        if a new server is added, it will only add to existing ring and very minial hash value will be impacted. ( only the one in the ring cycle before this new node)
+        to consider load sharing, a virtual node can be used, in practice it is widely used. for example for a 4 node system , each covers 90 degree, a new node added and share load with 
+        4th node, each with 45 degree, the new node will create a virtual node covers with 1st node as well. so the load can be evenly distributed. 
