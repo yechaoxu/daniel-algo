@@ -1,0 +1,64 @@
+
+# the idea is similar to quick sort, but instead of recursively call leftside and rightside and do left+pivot+right, 
+# it checks in range left, right, what is the pivot idx after re-arrange, if idx is before k, do left side as left, pivot_idx-1, otherwise do pivot+1, right, 
+# if pivot_idx ==k, thats the answer. 
+# we want to keep k consistent, thus we always use original list, but change left and right value. 
+
+from random import randint
+
+def swap(A, i, j):
+
+    temp = A[i]
+    A[i] = A[j]
+    A[j] = temp
+
+
+# Partition using Lomuto partition scheme
+def partition(A, left, right, pivot_idx):
+
+	pivot = A[pivot_idx]
+	swap(A, pivot_idx, right)
+	pivot_idx = left
+	for i in range(left, right):
+		if A[i]<pivot:
+			swap(A, i, pivot_idx)
+			pivot_idx+=1
+	
+	swap(A, pivot_idx, right)
+	return pivot_idx
+
+
+# Returns the k-th smallest element of list within left..right
+# (i.e. left <= k <= right). The search space within the list is
+# changing for each round - but the list is still the same size.
+# Thus, k does not need to be updated with each round.
+def quickSelect(A, left, right, k):
+
+    # If the list contains only one element, return that element
+    if left == right:
+        return A[left]
+
+    # select a pIndex between left and right
+    pIndex = randint(left, right)
+
+    pIndex = partition(A, left, right, pIndex)
+
+    # The pivot is in its sorted position
+    if k == pIndex:
+        return A[k]
+
+    # if k is less than the pivot index
+    elif k < pIndex:
+        return quickSelect(A, left, pIndex - 1, k)
+
+    # if k is more than the pivot index
+    else:
+        return quickSelect(A, pIndex + 1, right, k)
+
+
+if __name__ == '__main__':
+
+    A = [7, 4, 6, 3, 9, 1]
+    k = 1
+
+    print("K'th smallest element is", quickSelect(A, 0, len(A) - 1, k))
