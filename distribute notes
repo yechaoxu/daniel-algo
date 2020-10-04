@@ -1,2 +1,11 @@
 Load balancer:
              DNS, can use rounding robbin, hash the ip. 
+
+
+cache:
+      how to manage cache is called cache policy ( LRU)
+      cache miss
+      cache size matter. if it is too small it will hurt performance. 
+      cache consistency:
+                        write through , means write operation go through cache before , before goes to database 
+                        write back.      means write operation to database first, then write back
