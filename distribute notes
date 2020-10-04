@@ -9,3 +9,10 @@ cache:
       cache consistency:
                         write through , means write operation go through cache before , before goes to database 
                         write back.      means write operation to database first, then write back
+
+
+Database Index:
+        In database management systems, a reverse key index strategy reverses the key value before entering it in the index.1 E.g., 
+        the value 24538 becomes 83542 in the index. Reversing the key value is particularly useful for indexing data such as sequence numbers,
+        where each new key value is greater than the prior value, i.e., values monotonically increase.
+        Reverse key indexes have become particularly important in high volume transaction processing systems because they reduce contention for index blocks
