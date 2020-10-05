@@ -8,7 +8,7 @@ cache:
       cache size matter. if it is too small it will hurt performance. 
       cache consistency:
                         write through , means write operation go through cache before , before goes to database 
-                        write back.      means write operation to database first, then write back
+                        write back.      means write operation to cache, then to database asynchronously. 
 
 
 Database Index:
