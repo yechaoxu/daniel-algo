@@ -33,3 +33,18 @@ Things to go over.
         get:
         tweet(key, tweet_id)
         return: data , could be in json format
+
+    4  high level design.
+        client-> load balancer-> cluster of server. -> database. 
+        
+    5 database schema:
+        table1->tweet. 
+                key: tweet id, user id, location, timestamp, favorate cnt. 
+         table2-> user id table
+                key: id, name, email, dob, last log in
+         table3-> user follow
+                  user 1, user 2, like a graph . 
+         table 4-> favorates
+                 tweet id, user id. 
+                 
+         data sharding, distrubte the data to different machine. 
