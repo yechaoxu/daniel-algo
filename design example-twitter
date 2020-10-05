@@ -48,3 +48,11 @@ Things to go over.
                  tweet id, user id. 
                  
          data sharding, distrubte the data to different machine. 
+            sever write-> load balancer -> (database a, database b, database c..)
+            or server write-> hash based on tweet id->( database a, database b, ..)
+     6 cache
+        cache populate tweet/user. 
+        LRU, 
+        80/20, 20 percenrage user generate 80 percenrage traffic. 
+        we can generate timeline in hybird ways: for normal user tweet. pre-update the timeline and cache it
+                                                 for populate user/hot tweet, live pull from database and merge into cached timeline
