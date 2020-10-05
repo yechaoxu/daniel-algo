@@ -1,1 +1,35 @@
 TWITTER
+
+Things to go over. 
+    1 requirement and goals
+    2 storage and network capcacity
+    3 system performance/through out, cache
+    4 system fall over strategy
+    5 database schema
+    6 system design
+    
+    1.functional:
+        follow tweet
+        post tweet
+        generate timeline
+        favorite tweet accounts
+    1. non functional. 
+        high available
+        low latency
+        consistency 
+        fail over
+        
+    2.network capacity. 
+        1bill user, 200m dau, 100m tweet/day. avg 200 follower. 
+        100 m tweets *(280byte +30 byte meta) = 30 gb per day.   30gb*365 = 10 tb per year, 
+        
+        if 10 b tweet view daily,   10b*280byte/86400/1000,000 byte = 32mb/s
+        
+    3 system API. 
+        post:
+        tweet(key, tweet_datetime, location)
+        return :tweet url
+        
+        get:
+        tweet(key, tweet_id)
+        return: data , could be in json format
