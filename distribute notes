@@ -24,3 +24,7 @@ Consistent hashing
         if a new server is added, it will only add to existing ring and very minial hash value will be impacted. ( only the one in the ring cycle before this new node)
         to consider load sharing, a virtual node can be used, in practice it is widely used. for example for a 4 node system , each covers 90 degree, a new node added and share load with 
         4th node, each with 45 degree, the new node will create a virtual node covers with 1st node as well. so the load can be evenly distributed. 
+        
+ Message Queue/task queue.
+        it takes the tasks, distribute to each worker/server, if the server is dead(no heartbeat), it will re-assign to another node. 
+        rabbit message queue. 
