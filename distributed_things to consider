@@ -3,3 +3,14 @@ what high availabiliity is needed?
 network requirement?
 read heavey or write heavy?
 is there any single point failure? for example load-balancer( we can have two load balancer, and send heartbeat to each other, if one fails, another can take all the request)
+
+load balancer, where to put:
+example 
+                   client
+                 LB --LB
+            web server     WS    WS     WS
+             distributed cache  ( his or miss?)
+                 LB---LB
+            DB-master1       DB-master2    DB-master3
+    DB-replica1.1,1.2       DB-replica2.1,2.2    DB-replica3.1,3.2
+          
