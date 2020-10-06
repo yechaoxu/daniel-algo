@@ -2,4 +2,4 @@ what is the size of the data?
 what availabiliity is needed?
 network requirement?
 read heavey or write heavy?
-is there any single point failure? for example load-balancer
+is there any single point failure? for example load-balancer( we can have two load balancer, and send heartbeat to each other, if one fails, another can take all the request)
