@@ -1,0 +1,44 @@
+key stack:
+cassaandra
+zoo keeper
+memcache
+redis
+kafka
+
+
+CAP Theorem:
+	consistent-availability-partition tolerent 
+	you have only have two out of three!
+	you can not available, so don't tell the wrong data. 
+	you can send some data, but could be wrong. 
+	or you give up partition
+	
+distributed computation:
+	hadoop:
+		mapreduce api
+		mapreduce job management. 
+		distributed file system. 
+	Spark:
+
+distributed cache:
+	 scalability
+	 availablity 
+	 performance, 
+	 durablity
+	 
+	 how to design:
+		1st, single computer cache, -> LRU cache. 
+		2nd , multiple server, hash function to split data to different zone. 
+		3rd , how to re-direct request to cache server, MOD, but scale will bring down all existing cache. 
+		4rd, consistent hash. circle!
+		which component is master the hash? -> cache client.which sit insode of service server when send request.  
+		cache client can use binary to searach which cache server holds data. 
+		cache cliet use TCP or even UDp to talk to cache server
+		
+		how to config? 1)via config file. (most simple approach), it can be stored  in a shared location, and pulls few mins. 
+		               2) create a cache service, use heartbeat to talk and register available cache server. ( zookeeper)
+					   
+		by this design we have scalbility, since we add more shard cache server, and we have performance since search is via hash and communication is via TCP or UDp, 
+		but availablity is not there, any cache server fails, will result a mssaive cache miss. 
+		the answer is data replication, every cache master follows a slave master. 
+		this deal with hot shard. 
