@@ -46,3 +46,6 @@ distributed cache:
 		this deal with hot shard. 
 		
 		for cache, performance and availablity is more important compre to consistency. 
+		replication async will bring inconsistency. 
+		client can have different cache server list. we can make sure all client share single view of cache server list, but with trade off to higher latency. 
+		
