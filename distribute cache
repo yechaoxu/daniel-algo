@@ -40,5 +40,9 @@ distributed cache:
 					   
 		by this design we have scalbility, since we add more shard cache server, and we have performance since search is via hash and communication is via TCP or UDp, 
 		but availablity is not there, any cache server fails, will result a mssaive cache miss. 
+		
+
 		the answer is data replication, every cache master follows a slave master. 
 		this deal with hot shard. 
+		
+		for cache, performance and availablity is more important compre to consistency. 
