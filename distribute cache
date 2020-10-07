@@ -49,3 +49,6 @@ distributed cache:
 		replication async will bring inconsistency. 
 		client can have different cache server list. we can make sure all client share single view of cache server list, but with trade off to higher latency. 
 		
+		matrix to measure cache:
+		latency, number of cache hit and miss, cpu and ram utilization on cache host, network I/O, 
+		
