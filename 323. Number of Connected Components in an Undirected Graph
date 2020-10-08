@@ -1,0 +1,38 @@
+# for graph travel, 1st, always create a graph dict, = [node]:[nodex,y,z,w]
+#                   2nd, travel by pop one element, and put into a deque, and keep pop out  element from neighbors, also use a visited to track if the node is visited. 
+#                   3rd once completes, pop out another element from graph
+
+class Solution(object):
+    def countComponents(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        graph = defaultdict(list)
+
+        for group in edges:
+            for idx, node in enumerate(group):
+                for j in range(idx+1, len(group)):
+                    graph[group[idx]].append(group[j])
+                    graph[group[j]].append(group[idx])
+        result = 0
+        maxvisited = set()
+        #import pdb; pdb.set_trace()
+        data = deque()
+        while graph:
+            data.append(graph.keys()[0])
+            visited = set()
+            while data:
+                node = data.popleft()
+                if node not in visited:
+                    visited.add(node)
+  
+                    neigh = graph.pop(node)
+                    for i in neigh:
+                        if i not in visited:
+                            data.append(i)
+            result+=1
+            maxvisited = maxvisited.union(visited)
+        result+=(n - len(maxvisited))
+        return result
