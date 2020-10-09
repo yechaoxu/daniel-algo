@@ -1,0 +1,396 @@
+def isCustomerWinner(codeList, shoppingCart):
+    i = 0
+    j = 0
+    while i < len(codeList) and j < len(shoppingCart):
+        target = codeList[i]
+        match = True
+        for idx, word in enumerate(target):
+           if  j+idx < len(shoppingCart)  and   ( word == shoppingCart[j+idx] or word =='anything'):
+               continue
+           else:
+               match = False
+               break
+        if match:
+            j = j+ len(target)
+            i+=1
+        else:
+            j+=1
+    
+    return i == len(codeList)
+    
+# space: O(1), RTC: O(M*N), where M is number of total words in codes and N is number of number of items in the cart
+
+# print(isCustomerWinner([['apple', 'apple'], ['banana', 'anything', 'banana']], ['orange', 'apple', 'apple', 'banana', 'orange', 'banana']))
+# print(isCustomerWinner([['apple', 'apple'], ['banana', 'anything', 'banana']], ['banana', 'orange', 'banana', 'apple', 'apple']))
+# print(isCustomerWinner([['apple', 'apple'], ['banana', 'anything', 'banana']], ['apple', 'banana', 'apple', 'banana', 'orange', 'banana']))
+# print(isCustomerWinner([['apple', 'banana','apple', 'banana', 'coconut']], ['apple', 'banana', 'apple', 'banana', 'apple', 'banana']))
+# print(isCustomerWinner([['apple', 'orange'], ['orange', 'banana', 'orange']], ['apple', 'orange', 'banana', 'orange', 'orange', 'banana', 'orange', 'grape']))
+# print(isCustomerWinner([['apple', 'apple'], ['banana', 'anything', 'banana']], ['apple', 'apple', 'banana', 'banana']))
+# print(isCustomerWinner([['apple', 'apple'], ['apple', 'anything', 'banana']], ['apple', 'apple', 'banana', 'banana']))
+# print(isCustomerWinner([['apple', 'apple'], ['apple', 'anything', 'banana']], ['apple', 'apple', 'apple', 'apple', 'banana']))
+# print(isCustomerWinner([['apple', 'apple'], ['apple', 'apple','banana']], ['apple', 'apple', 'apple', 'banana']))
+# print(isCustomerWinner([["anything", "apple" ], ["banana", "anything", "banana"]], ["orange", "grapes", "apple", "orange", "orange", "banana", "apple", "banana", "banana"]))
+# print(isCustomerWinner([['anything']], ['apple', 'apple', 'apple', 'banana']))
+
+
+from collections import defaultdict
+def solve(arr):
+    record = defaultdict(int)
+    result = 0
+    for time in arr:
+        target = 60 -time%60
+        result += record[target]
+        record[time%60]+=1
+    return result
+    
+    
+
+#print(solve([60,60,60]))
+#print(solve([10,50,90,30]))
+#print(solve([30, 20, 150, 100, 40]))
+#print(solve([60,60,60]))
+
+from collections import deque
+def compartment(s, start, end):
+    tmp = 0
+    tmp_right = 0
+    total = []
+    right =[]
+    left = deque()
+    for idx, char in enumerate(s):
+        if char =='*':
+            tmp+=1
+        total.append(tmp)
+        if char =='*':
+            tmp_right+=1
+        else:
+            tmp_right = 0
+        right.append(tmp_right)
+    tmp_left =0
+    for idx in range(len(s)-1, -1, -1):
+        if s[idx]=='*':
+            tmp_left+=1
+        else:
+            tmp_left = 0
+        left.appendleft(tmp_left)
+    
+    result = []
+ 
+    for i, j in zip(start, end):
+        i-=1
+        j-=1
+        tmpresult = total[j] - total[i] - right[i] - left[j]
+        result.append(tmpresult)
+    
+        
+import math
+primedict = dict()
+cntdict = dict()
+def wayofprime(s):
+
+    def is_prime(num):
+        if num in primedict:
+            return primedict[num]
+        i = 2
+        while i < math.sqrt(num):
+            if num%i ==0:
+                primedict[num] = False
+                return False
+            else:
+                i+=1
+        primedict[num] = True
+        return True
+    if not s:
+        return 1
+    total = 0
+    for i in range(min(len(s), 8)):
+        candidate = int((s[0:i+1]))
+
+        if candidate >2 and candidate < 1000000 and is_prime(candidate):
+
+            total+=wayofprime(s[i+1:])
+    cntdict[s] = total
+    return total
+s = "11373"
+#print(wayofprime(s))        
+
+from collections import Counter
+# k lenth substring with k distinct chars
+def k_distinct(s, k):
+    result = []
+    for i in range(0, len(s)):
+        cnt = 0
+        record = Counter()
+ 
+        for j in range(i, -1, -1):
+            if record[s[j]] == 0:
+                record[s[j]] = 1
+                cnt+=1
+            else:
+                record[s[j]] += 1
+            if cnt ==k:
+                result.append(s[j:i+1])
+            if cnt > k:
+                break
+    return result
+s = "aa"
+k = 1
+#print(k_distinct(s,k))
+
+
+
+def fiveStartReviews(productRatings, ratingsThreshold):
+ #((4 / 4) + (1/2) + (3/6))/3 = 66.66%
+    import sys
+    import heapq
+    data = []
+    totalproduct = len(productRatings)
+    for good, total in productRatings:
+        currrate = float(good)/total
+        nextrate = float(good+1)/(total+1)
+        data.append([ -(nextrate-currrate)  ,  total, good, currrate])
+    heapq.heapify(data)
+    def calc_rating(data):
+        l = len(data)
+        tmp = [z for w,x,y,z in data]
+        return float(sum(tmp))/float(l)
+    curr_rating = calc_rating(data)
+    step = 0
+    while curr_rating <= ratingsThreshold:
+        d = heapq.heappop(data)
+        gain, tmptotal,tmpgood, rating = d
+        if tmpgood ==tmptotal:
+            heapq.heappush(data,[0,sys.maxint, sys.maxint, 1])
+        else:
+            
+            tmptotal+=1
+            tmpgood+=1
+            currrate = float(tmpgood)/tmptotal
+            nextrate = float(tmpgood+1)/(tmptotal+1)           
+            
+            heapq.heappush(data,[ -(nextrate-currrate) , tmptotal,tmpgood, currrate])
+            curr_rating = calc_rating(data)
+            step+=1
+    return step
+data = [[4,4], [1,2], [3, 6]]
+#print(fiveStartReviews(data ,0.77))
+
+from collections import deque
+def findproduct(data):
+    graph = defaultdict(list)
+    
+    for group in data:
+        for idx, node in enumerate(group):
+            for j in range(idx+1, len(group)):
+                graph[group[idx]].append(group[j])
+                graph[group[j]].append(group[idx])
+    result = []
+    maxresult = 0
+    #import pdb; pdb.set_trace()
+    data = deque()
+    while graph:
+        data.append(graph.keys()[0])
+        visited = set()
+        while data:
+            node = data.popleft()
+            if node not in visited:
+                visited.add(node)
+                neigh = graph.pop(node)
+                for i in neigh:
+                    if i not in visited:
+                        data.append(i)
+        print(visited)
+        if len(visited) > maxresult:
+            result = visited
+        
+        
+        
+                
+                      
+        
+
+
+
+data= [['p1','p2','p3'], ['p5','p6'], ['p6','p7'], ['p8','p9'], ['p1', 'p9'] ]
+#print(findproduct(data))
+
+
+
+
+def LB(data):
+    sumdata = []
+    tmp = 0
+    for i in data:
+        tmp+=i
+        sumdata.append(tmp)
+    
+    def dfs(index, target ):
+        import pdb; pdb.set_trace()  
+        for i in range(index+1, len(data)-1):
+            if sumdata[i-1]-sumdata[index-1] == target and sumdata[-1]-sumdata[i] == target:
+                print(i)
+                return True
+                
+        return False
+    
+    
+    
+    for idx in range(len(data)):
+        if idx==0:
+            target = 0
+        else:
+            # skip idx here. 
+            target = sumdata[idx-1]
+        if dfs(idx+1, target):
+            print('target' + str(target))
+            return True
+    return False
+
+
+
+data = [2, 4, 5, 3, 3, 9, 2, 2, 2]
+#data = [1,1,1,1]
+#print(LB(data))
+
+
+matrix = [[0, 1, 1, 0, 1],
+[0, 1, 0, 1, 0],
+[0, 0, 0, 0, 1],
+[0, 1, 0, 0, 0]]
+
+def zombie(matrix):
+    from collections import deque
+    record = deque()
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            if matrix[i][j]==1:
+                record.append([i,j])
+    days = 0
+    while record:
+        l = len(record)
+        for _ in range(l):
+            
+            x,y = record.popleft()
+            
+            if x>0 and matrix[x-1][y] ==0:
+                record.append([x-1,y])
+                matrix[x-1][y] =1
+            if  x< len(matrix)-1 and matrix[x+1][y] ==0:
+                record.append([x+1,y])
+                matrix[x+1][y] =1
+            if y>0 and matrix[x][y-1] ==0:
+                record.append([x,y-1])
+                matrix[x][y-1] =1
+            if y< len(matrix[0])-1 and matrix[x][y+1] ==0:
+                record.append([x,y+1])
+                matrix[x][y+1] =1
+        print(record)
+        days+=1
+    return days-1
+                
+#print(zombie(matrix))
+
+
+
+def treasure(matrix):
+    from collections import deque
+    data = deque()
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            if matrix[i][j] =='S':
+                data.append((i,j))
+                
+    step = 0
+    visited = set()
+    while data:
+        step+=1
+        l = len(data)
+        for _ in range(l):
+            x,y = data.popleft()
+            if (x,y) in visited:
+                continue
+            visited.add((x,y))
+            if x>0:
+                if matrix[x-1][y]=='O':
+                    data.append((x-1,y))
+                elif matrix[x-1][y]=='X':
+                    return step
+            if x<len(matrix)-1:
+                if matrix[x+1][y]=='O':
+                    data.append((x+1,y))
+                elif matrix[x+1][y]=='X':
+                    return step
+            if y >0:
+                if matrix[x][y-1]=='O':
+                    data.append((x,y-1))
+                elif matrix[x][y-1]=='X':
+                    return step
+
+            if y < len(matrix[0])-1:
+                if matrix[x][y+1]=='O':
+                    data.append((x,y+1))
+                elif matrix[x][y+1]=='X':
+                    return step                
+    return -1        
+
+
+
+data = [
+['S', 'O', 'O', 'S', 'S'],
+['D', 'O', 'D', 'O', 'D'],
+['O', 'O', 'O', 'O', 'X'],
+['X', 'D', 'D', 'O', 'O'],
+['X', 'D', 'D', 'D', 'O'],
+]
+
+print(treasure(data))
+
+
+def find_string(s):
+    print(s)
+    if len(s)<=2:
+        return [s]
+    from collections import Counter, defaultdict
+    record = Counter(s)
+    data = defaultdict(int)
+    result = []
+    def partmatch(curr, record):
+        for key in curr.keys():
+            if curr[key] != record[key]:
+                return False
+        return True
+    
+    while len(s)>2  and s[0] ==s[-1]:
+        s = s[1:-1]
+    print(s)
+    print('--')
+    pre = 0
+    for idx, char in enumerate(s):
+        data[char]+=1
+        import pdb; pdb.set_trace()  
+        if  partmatch(data, record):
+            tmp = find_string(s[pre:idx+1])
+            result.extend(tmp)
+            pre = idx+1
+            data = defaultdict(int)
+    return result        
+
+
+data = 'bbeadcxede'
+print(find_string(data))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
