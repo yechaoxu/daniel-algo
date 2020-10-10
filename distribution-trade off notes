@@ -1,0 +1,8 @@
+CAP!
+  consistency        ( make sure the most recent data is read back for given client)
+  availability       ( when data request is submitted it need to reply)
+  parition tolenrence  ( The system continues to operate despite arbitrary partitioning due to network failures)
+  
+  Networks aren't reliable, so you'll need to support partition tolerance. You'll need to make a software tradeoff between consistency and availability.
+  
+  trade off: parition is always needed in distributed system, thus you either prefer availability, but the data may be stale, or you choose consistency, but request will delay and timeout. 
