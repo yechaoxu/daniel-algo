@@ -28,3 +28,13 @@ Consistent hashing
  Message Queue/task queue.
         it takes the tasks, distribute to each worker/server, if the server is dead(no heartbeat), it will re-assign to another node. 
         rabbit message queue. 
+
+
+Consistent hashing
+Data replication
+Total order broadcast
+Write ahead logging
+Two phase locking
+Isolation levels (read uncomitted, read comitted, repeatable read, serializable)
+Quad trees (GeoHashin)
+Bloom filters
