@@ -1,0 +1,39 @@
+function requirement:
+    upload/download file
+    sync file betweeen platform within same user
+    history of version support of file
+    share file between users
+    storage limit per user
+    file size, no limit, only total storage size limit
+
+non-function requirement:
+    how to handle one file with many revision ?
+    ACID , ACID (atomicity, consistency, isolation, durability) 
+    fault tolerant
+    low bandwidth
+    performance
+    
+    
+how sharing file will work?
+    sharing file is happening in metadata database. 
+    user table:
+    file_id , owner_id. read_only_user_id, rw_user_id 
+    
+    file table:
+    file_id, file_name, owner_id
+    
+how to scale:
+sharding with replica, 
+#1 shard by user_id, issue is the user can have access to many other user's file and it will need to read all other shards to get the info. 
+
+
+
+using consistent hashing, hash_func(user_id+file_id)
+    
+    
+    
+    
+               Client
+               
+          Dropbox Server,  metadata service,            
+            S3 storage  /   DB for metadata.
