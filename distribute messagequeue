@@ -1,0 +1,23 @@
+front-end. light weight front end app:
+SSL
+authification 
+log
+user usage, 
+rates limiter
+
+back-end
+
+leader-follower node mode. 
+
+in-cluster manager  
+  manage within cluster
+  maintain a list of host
+  monitor heartbeat
+  deal with leader /follow 
+
+
+out cluster mananger
+  manage queue assignment among cluster
+  maintain a list of live cluster
+  monitor each cluster
+  deal with overload cluster
