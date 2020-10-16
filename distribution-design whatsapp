@@ -1,0 +1,37 @@
+wahts app design
+
+requirement:
+	point to point
+	group message
+	image sharing
+	send deliverted/ read recepits
+	
+	
+	
+	client app                  client app
+		\                            /
+		      gateway /gateway/gateway
+					||
+	(micro service)	message routing service/ mes /mes / mes
+					
+					||
+					
+			session service(stores which user is registered) /grouping service( manage which member is in the group)
+					||
+				back -end database,  stores ( last log in time, message that not delivered )
+				session service can has its own database
+				group service can has its own database
+	
+	
+	how would micro service know how to find the receipt client?
+	
+	each client will need to regsiter to a mes.  
+		
+		
+		
+		
+	details:
+		gateways, heavy on memory, it uses websocket, need to push as many functions to the back-end as possible. 
+		groupid -- use id : database
+		consistent hash-- determines which user is in which server
+	
