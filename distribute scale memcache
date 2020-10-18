@@ -14,3 +14,20 @@ basic strucuture
    a single web request results in hundreads of get request
    thus data is distributed inside cluster via consistent hashing
    thus every webserver talks to many memcache server, it is a all to all network. data replication is used to reduce the each memcache load
+   TCP for set/delete .( high reliability)
+   UDP for get ( high availbility)
+   within each pool, we could either distribute the keys( consistent hashing), or replicate between memcache server. 
+   --- some case say a webrequest have 100 keys per request, if we distriubte keys to different server, web request /sec is almost the same for each server. 
+                       but if we replicate the memcache server, we reduce the web reqeust to 50% if we doulbe the memcache server. 
+                       web request cost vs key request cost 
+   how to handle failure: spare memcache server that idle during normal, and if any server is dead the idle pool will receive the request. 
+   
+   
+   in Region:
+   regional invalidation- a special service running and checks the operation to back-bone database and detecs any update/del . and broadcast to memcache in that region.
+   invalidate via web server's boradcast is not idealy, 1) more traffic in the front end. 2) no recourse when system is misconfigured. 
+   each cluster independenly cache data based on user request.  if user requests are randomly send to each cluster in the region we exepct the cached data to be evenly distributed. 
+   one master copy , and all other region is read only replica. 
+   --write from other replica regison, 1) set a special marker in that region, 2) perform write to master 3) delete key in memcache
+                                        during write time, the marker indicates all get request to get data from database. 
+   
