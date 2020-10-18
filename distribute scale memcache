@@ -1,0 +1,16 @@
+basic strucuture
+        
+    Region(Master)                                       Region(slave)         Region(slave)
+      /\                                                    /\
+    front-end cluster                                 front-end cluster  
+        ||                                                  ||
+      memcache                                           memcache
+        ||                                                    ||
+     Storage Cluster(master)   (storage replication)->      storage cluster(slave)       
+     
+     
+     
+   In each cluster
+   a single web request results in hundreads of get request
+   thus data is distributed inside cluster via consistent hashing
+   thus every webserver talks to many memcache server, it is a all to all network. data replication is used to reduce the each memcache load
