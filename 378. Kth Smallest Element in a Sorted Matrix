@@ -1,0 +1,36 @@
+
+it picks the most top left and bottom right points, and create a hyper mid value, then count how many element is smaller than mid. 
+we want to have at least k element smaller than mid, and kth will be the result
+if cnt less than k, left+=1, 
+otherwise, there is the tricky part, as long as mid >=k, right is mid, and right will keep moving toward left, 
+until right cross left, which is when right cross the kth element . then we know right is the kth element
+left side ensures it has less than k elements smaller than left, thus kth element is at right side. 
+
+
+class Solution(object):
+    def kthSmallest(self, matrix, k):
+        """
+        :type matrix: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        left = matrix[0][0]
+        right = matrix[-1][-1]
+        
+        while left < right:
+            mid = (right+left)/2
+            
+            j = len(matrix[0])-1
+            cnt = 0
+            for i in range(len(matrix)):
+                while j >=0 and matrix[i][j]>mid:
+                    j-=1
+                cnt+=(j+1)
+            
+            if cnt < k:
+                left = mid+1
+            else:
+                right = mid
+        
+        return right
+                
