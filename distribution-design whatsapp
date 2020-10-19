@@ -26,12 +26,17 @@ requirement:
 	how would micro service know how to find the receipt client?
 	
 	each client will need to regsiter to a mes.  
-		
-		
-		
-		
+
+	
+	
+	
 	details:
 		gateways, heavy on memory, it uses websocket, need to push as many functions to the back-end as possible. 
+		groupid -- use id : database
+		consistent hash-- determines which user is in which server
+		each time a user connect to the service, a thread is createdt , and database is logged the activity with pid as key
+		media sharing: it will be a different connection compare to websocket, sender upload to a media storage via http, get a hash value, the value is sent to receiver, and receiver download the media from media storage via that hash value. 
+	as many functions to the back-end as possible. 
 		groupid -- use id : database
 		consistent hash-- determines which user is in which server
 	
