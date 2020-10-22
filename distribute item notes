@@ -50,3 +50,9 @@ messsage:   kafka
 dadta process: Spark, 
 Storage: Cassandra, 
 object storage: S3. 
+RabbitMQ.
+cache:  Redis, memcache
+Service discovery: zookeeper
+
+
+
