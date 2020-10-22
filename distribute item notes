@@ -38,3 +38,11 @@ Two phase locking
 Isolation levels (read uncomitted, read comitted, repeatable read, serializable)
 Quad trees (GeoHashin)
 Bloom filters
+
+
+
+
+zookeeper, 
+cassandra 
+S3
+aws load balancer
