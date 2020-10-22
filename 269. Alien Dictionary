@@ -1,0 +1,59 @@
+classic graph .
+1) build graph and degree, graph means from c->d, degree means how many connection toward d it has. 
+2) start from node with 0 connections. means those node are not been connected, therefore is a head of others. 
+3) using a deque, loop through all 0 connections node, those node will connect to other node via graph, thus we iterrate throught graph, and keep adding 0 connection node to q.
+4) wo do final check if result length == total char, if not something is either wrong, or a loop. 
+
+
+
+
+
+class Solution(object):
+    def alienOrder(self, words):
+        """
+        :type words: List[str]
+        :rtype: str
+        """
+        from collections import deque, Counter, defaultdict
+        # Step 0: create data structures + the in_degree of each unique letter to 0.
+        graph = defaultdict(set)
+        degree = Counter()
+        
+        for word in words:
+            for char in word:
+                degree[char] =0
+        
+        for idx in range(len(words)-1):
+            diff = False
+            for c,d in zip(words[idx], words[idx+1]): 
+                if c!=d:
+                    diff = True
+                    if d not in graph[c]:
+                        graph[c].add(d)
+                        degree[d]+=1
+                    break
+            if not diff:
+                if len(words[idx+1]) < len(words[idx]):
+                    print('prefix')
+                    return ''
+        
+        q = deque()
+        for key in degree.keys():
+            if degree[key] ==0:
+                q.append(key)
+        
+        result =[]
+        while q:
+            l = len(q)
+            for _ in range(l):
+                node = q.popleft()
+                result.append(node)
+                for child in graph[node]:
+                    degree[child]-=1
+                    if degree[child]==0:
+                        q.append(child)
+        if len(degree.keys()) != len(result):
+            print('less nodes')
+            return ''
+        
+        return ''.join(result)
