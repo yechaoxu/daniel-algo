@@ -45,4 +45,8 @@ Bloom filters
 zookeeper, 
 cassandra 
 S3
-aws load balancer
+aws load balancer ELB
+messsage:   kafka
+dadta process: Spark, 
+Storage: Cassandra, 
+object storage: S3. 
