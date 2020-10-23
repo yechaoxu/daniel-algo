@@ -17,3 +17,33 @@ cassandra:
 
   SimpleStrategy: Use only for a single datacenter and one rack. If you ever intend more than one datacenter, use the NetworkTopologyStrategy.
   NetworkTopologyStrategy: Highly recommended for most deployments because it is much easier to expand to multiple datacenters when required by future expansion.
+  
+  
+MySQL
+MySQL "sharding" typically refers to an application specific implementation that is not directly supported by the database. As is mentioned in other responses, MySQL NDB (http://en.wikipedia.org/wiki/MySQL_Cluster) does support limited clustering capabilities, however it only scales to a handful of nodes. When companies talk about "sharding MySQL", they usually refer to adding an application specific sharding layer.
+
+Cassandra
+Cassandra's sharding is based on either a consistent hash algorithm or an order preserving hash algorithm and a distributed ring. When an object is written to Cassandra, a hash of the object's key is used to determine which node in the Cassandra cluster will be written to. Cassandra will also replicate the object to W other nodes in the cluster based on the user's desired replication settings. If order preserving hashing is used, each node in the Cassandra cluster stores a range of the overall data whereas with consistent hashing, data is more or less randomly distributed across nodes. Objects are redistributed as nodes are added or removed from the cluster.
+
+MongoDB
+MongoDB uses range based partitioning. The cluster is made up of 1 or more "shards" that store data. When a write or read occurs, the shard is selected by the "shard key" of the object (user configurable). As shards are added and removed from the cluster, MongoDB will redistribute data to balance load on each shard node. Unlike Cassandra, new nodes in a MongoDB cluster can be added either to scale reads (by adding read replicas to existing shards) or to scale writes (by adding new shards to the cluster).
+
+Comparison
+The primary difference between MongoDB and Cassandra's sharding architecture is how replication is achieved.
+
+In Cassandra, each shard is a single server and replication is achieved by storing an object on multiple shards. If a server dies, the object still lives (hopefully) at other shards.
+
+In MongoDB, each shard is a replica-set of multiple servers. Objects live on a single shard and are replicated amongst the members of the replica set. If a server dies, another member of the replica set is elected to replace it.
+
+This difference offers a tradeoff. In Cassandra, failures will result in data moving between nodes in the cluster in order to maintain the replication settings of the administrator. A new server added or removed from a cluster may cause every node to change which ranges it controls. By contrast, adding or removing a node in MongoDB typically results in less data movement as data stays within a shard during failures and additions of read replicas and only will migrate when new shards are added or when the cluster detects load imbalance and changes the partitions.
+
+As a result, while Cassandra is conceptually easier to setup, it will typically deliver less predictable performance than MongoDB during server failures and additions.
+
+I say "conceptually easier" because I find that when it comes time to actually set up a sharded database, most people find that setting up MongoDB is pretty trivial. I encourage you to try both and see which one you actually get up and running with.
+
+MongoDB sharding setup: http://www.mongodb.org/display/DOCS/A+Sample+Configuration+Session
+
+Cassandra distributed setup:
+http://wiki.apache.org/cassandra/GettingStarted
+
+In either case, auto-sharding is a killer feature of Cassandra, MongoDB, RIak, and most of the NoSQL solutions and tends to be one of _the_ reasons to use these systems over traditional RDBMS systems like MySQL. The first step is recognizing that if this is a feature you need, you should be looking at systems other than MySQL. Once you've decided that you're not going to reinvent sharding, it's a matter of deciding which system better fits your architecture and desired scaling strategy.
