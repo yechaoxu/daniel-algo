@@ -14,3 +14,35 @@ example
             DB-master1       DB-master2    DB-master3
     DB-replica1.1,1.2       DB-replica2.1,2.2    DB-replica3.1,3.2
           
+
+System design step:
+1 functional requirement
+    API, 
+    define input parameters
+    define return values
+
+2 non-funbctional requirement
+  scalability 
+  availability
+  performance
+  and others, such as durability, cost, consistency
+
+3 high level component
+  how data flows in
+  how data flows out
+  
+
+4 detail design
+  all about data! storage, transfer, processing
+  use CS fundamental concepts
+  apply certain technologies
+
+5 bottleneck , tradeoff and how to test
+  know what trade off you have made. 
+  mention where could be the bottleneck , what can be done. 
+  ask the interviewer what is his thoughts. 
+
+
+
+
+
