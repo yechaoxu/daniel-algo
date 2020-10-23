@@ -1,6 +1,6 @@
 Load balancer:
-             DNS, can use rounding robbin, hash the ip. 
-
+             Dcan use rounding robbin, hash the ip. 
+             https://www.acodersjourney.com/system-design-interview-load-balancing/
 
 cache:
       how to manage cache is called cache policy ( LRU)
