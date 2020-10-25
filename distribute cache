@@ -62,6 +62,71 @@ Write around cache: Where write directly goes to the DB, bypassing the cache.
 Pro: This may reduce latency.
 Con: However, it increases cache misses because the cache system reads the information from DB in case of a cache miss. As a result of it, this can lead to higher read latency in case of applications that write and re-read the information quickly. Read must happen from slower back-end storage and experience higher latency.
 
+
+
+
+key-value cache
+
+functional:
+	get
+		hit
+		miss
+	set
+	
+non functional:
+	scalable
+	high avilability
+	high performance
+	consistency?
+	
+Things to consider:
+	high traffic spike
+	load not evenly distribute
+	low latency
+	10 billion queries per month
+	assume each request 10kb dataload, 5 kb header/meata data. 
+	that 15 * 10bill/30 = 5bill kb/day = 5mill mb/day = 200 000mb/hr = 3500mb/min
+	
+	
+	
+if get :
+	client send request. 
+	request hit web server. 
+	web server hit query api. 
+	query parse the data, stripe the header, extract the request dataload, ->hash value -> checks memory cache
+	
+	if cache hit
+	if data is not expired in memory, return content
+	
+	if get cache miss:
+	query service request data from database 
+
+if set:
+	
+
+
+module design
+
+	
+			request
+		cache_client build inside web service, each client has the same config and knows which cluster to point
+		cache client service( S3, or zookeeper)
+	cache cluster(a), b, c, d
+	
+	database, master-replica-replica-replica
+
+cache_clist-> how to maintain a cache cluster list, 1) keep a config file 3) keep the config in a public storage, like s3, 3) discovery service like zookeeper
+
+inside each cluster,  each master has a replica to share load and can be promoted to master. 
+					  all master nodes talk to each other, under management of configuration service
+
+when data is updated to cache and database 
+write through
+write back
+
+
+
+
 Write back cache: Where the write is directly done to the caching layer and the write is confirmed as soon as the write to the cache completes. The cache then asynchronously syncs this write to the DB.
 Pro: This would lead to a really quick write latency and high write throughput for the write-intensive applications.
 Con: However, there is a risk of losing the data in case the caching layer dies because the only single copy of the written data is in the cache. We can improve this by having more than one replica acknowledging the write in the cache.
