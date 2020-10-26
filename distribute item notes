@@ -1,6 +1,24 @@
 Load balancer:
              Dcan use rounding robbin, hash the ip. 
              https://www.acodersjourney.com/system-design-interview-load-balancing/
+              Load balancer:
+
+              Layer4
+              good
+              only look at the ip, not the data. 
+              simpler load balancing, efficient. don't access the data layer. 
+              minimise tcp connection
+
+
+              bad
+              no smart load balancing
+              sticky per segment.
+              no caching
+
+              Layer 7
+              need to terminate tcp connection and create a new one
+              smart routing by read data layer. 
+              can cache. 
 
 cache:
       how to manage cache is called cache policy ( LRU)
