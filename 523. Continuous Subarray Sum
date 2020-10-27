@@ -1,0 +1,30 @@
+this is a very simple, but yet lots of corner case question. 
+basiclly we are trying to find a number, tmp , which tmp - pre tmp == k*n
+so we keep adding tmp+=num, tmp%=k, and add tmp into dict, if we could find a tmp that have the same residual we know we have found the result. 
+corner case 1) , we set data[0]=-1 , this is to include subarry which include index 0, otherwise we consider index4-index0 is only contains 1,2,3,4, but not 0. 
+so by doing data[0]=-1, we assume there is a index at 0 that is available. 
+corner case 2) k==0, in this case we don't do tmp%k, cos there is no need. any tmp great than 0 will not be quilify, since all data is positive. 
+
+
+class Solution(object):
+    def checkSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+
+        data = dict()
+        tmp = 0
+        data[0]=-1
+        
+        for idx,num in enumerate(nums):
+            tmp+=num
+            if k !=0:
+                tmp = tmp %k
+            if tmp in data:
+                if idx-data[tmp] >1:
+                    return True
+            else:
+                data[tmp] = idx
+        return False
