@@ -6,3 +6,9 @@ CAP!
   Networks aren't reliable, so you'll need to support partition tolerance. You'll need to make a software tradeoff between consistency and availability.
   
   trade off: parition is always needed in distributed system, thus you either prefer availability, but the data may be stale, or you choose consistency, but request will delay and timeout. 
+  
+ Cache:
+  redis vs memcache
+    redis is persistence, means it by default keeps a snapshot of data in disk
+    memcache can't do that, but with less system load. 
+  
