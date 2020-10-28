@@ -11,7 +11,15 @@ range based sharding
 cassandra:
   https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/architecture/archDataDistributeReplication.html
   Data replication
-  Cassandra stores replicas on multiple nodes to ensure reliability and fault tolerance. A replication strategy determines the nodes where replicas are placed. The total number of replicas across the cluster is referred to as the replication factor. A replication factor of 1 means that there is only one copy of each row in the cluster. If the node containing the row goes down, the row cannot be retrieved. A replication factor of 2 means two copies of each row, where each copy is on a different node. All replicas are equally important; there is no primary or master replica. As a general rule, the replication factor should not exceed the number of nodes in the cluster. However, you can increase the replication factor and then add the desired number of nodes later.
+  Cassandra stores replicas on multiple nodes to ensure reliability and fault tolerance. 
+  A replication strategy determines the nodes where replicas are placed. 
+  The total number of replicas across the cluster is referred to as the replication factor. 
+  A replication factor of 1 means that there is only one copy of each row in the cluster. 
+  If the node containing the row goes down, the row cannot be retrieved. 
+  A replication factor of 2 means two copies of each row, where each copy is on a different node. 
+  All replicas are equally important; there is no primary or master replica. 
+  As a general rule, the replication factor should not exceed the number of nodes in the cluster. 
+  However, you can increase the replication factor and then add the desired number of nodes later.
 
   Two replication strategies are available:
 
@@ -35,7 +43,11 @@ In Cassandra, each shard is a single server and replication is achieved by stori
 
 In MongoDB, each shard is a replica-set of multiple servers. Objects live on a single shard and are replicated amongst the members of the replica set. If a server dies, another member of the replica set is elected to replace it.
 
-This difference offers a tradeoff. In Cassandra, failures will result in data moving between nodes in the cluster in order to maintain the replication settings of the administrator. A new server added or removed from a cluster may cause every node to change which ranges it controls. By contrast, adding or removing a node in MongoDB typically results in less data movement as data stays within a shard during failures and additions of read replicas and only will migrate when new shards are added or when the cluster detects load imbalance and changes the partitions.
+This difference offers a tradeoff. 
+In Cassandra, failures will result in data moving between nodes in the cluster in order to maintain the replication settings of the administrator. 
+A new server added or removed from a cluster may cause every node to change which ranges it controls. 
+By contrast, adding or removing a node in MongoDB typically results in less data movement as data stays within a shard during failures and additions of read replicas, 
+and only will migrate when new shards are added or when the cluster detects load imbalance and changes the partitions.
 
 As a result, while Cassandra is conceptually easier to setup, it will typically deliver less predictable performance than MongoDB during server failures and additions.
 
