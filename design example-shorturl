@@ -1,31 +1,67 @@
 
-6000/S creation
 short url design:
-	logic design first:
-			web API-> what web interface will look like. 
-			http -redirect -> short url to long url. 
-			
-	back-end:
+	functional.
+		user can given a long url, return a shortre url. 
+		user can enter a short url, get the original long url. 
+		user have the option to define what name short url they want, 
+		link will expire
+	
+	non-function.
+		system should have high availbility
+		performance, get should be very quick. 
+		shortened url should be not predictble. 
+		
+	
+	back of envalope calc. 
+		assume 100:1 ratio between read and write. 
+		500Mill new url per month, expect 50b read per month. 
+		
+		queries per sec will be 500mill/30/24/3600 , 500,000,000/720 * 3600 =
+			write. roughyl   500,000/2500 = 200 request /sec
+			read  200*100 = 20000/sec
 		storage:
-			because it is high through put. no relation need. just long-short. 
-			so it will use nosql database. key/value pair. 
-			because we allows one long url to multiple short url. 
-			key/value pair = shorturl: longurl
-	
-	
-	6000 * 10 kb/s = 10MB/s
-	10MB *3600 * 24 = mb per day.  * 365 = one year storage. 
-	
-	
-			EU region   US region    asian region
-						/      \
-							LB
-computer layer		web server, WS, WS, WS
-
-						standlone service , database LB. it can heartbeat each datacenter. 
-
-database layer      NO-SQL, NO-SQL( sharded services)
-how to shard, we can use short url with sharding algo, like hash algo. 
-
-for datacenter layer. 
-              no-sql , master-replica
+				assume 5 yrs storage. 
+				500 mill * 5*12 = 30  bill
+				assume 500 bytes url, meta data 500 byte, 1k per record.   . 
+				30, 000,000,000 * 1k = 30tb
+		bandwidth. 
+				20000/sec read, 200 /sec write. 
+				20mb /sec bandwidth
+	API.
+		seturl(customer_id, long_url, expire_date =5yr)
+		geturl(short_url)
+		
+		how to detec abouse . each customer_id can be limited to certain number
+	database.
+		we need to store billbion of data, 
+		each record is small. 
+		no relation between record. 
+		due to storage size and no relation between record, we go for cassdandra, no-sql database. which is easier to scale. 
+	high- level design. 
+		we will have a hash function to generate a special char for use as part of short url. 
+		how to ensure multiple user enter the same long url and get the same short url. ?>
+			we could append user id and datetime stamp at the end. 
+		
+	data partition and replication. 
+		range based partition. 
+			we should use the first two letter to distribute the load. the issue is, we will have unbalanced load . 
+		
+		hash based partition. 
+			in this case, we can take the hash of the key, to determine the partition in which database to store the data. 
+			the hash function will randomly distribute data based on hash value , say from 0- 256. 
+			we could further use consistent hash method to make sure no hot shard. 
+			
+	cache.
+		between web server layer, and data service layer, we will have a load-balancer and a cache layer. 
+		before hit the backbone database, the application server will check the cache server first. 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
