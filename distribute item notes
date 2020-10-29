@@ -61,6 +61,16 @@ Bloom filters
 
 
 zookeeper, 
+  it does the configuration of multiple nodes, detecs master/salve nodes, distributed, each node contains all info , can do quorum check 
+
+kafka 
+  it can acts as a message exchange system, producer post msg to the broker, msg is seggrate based on topic. 
+  broker will do parition to split the msg ( parition 1/2)
+  consumer form a group, two (a,b) in one group, this group will share load from all paritions( a read from 1, b read from 2),which you are reading this topic as queue
+  if you want msg to broadcast, you can assign each consumer in a unique group so each consumer will read all msgs from that topic. 
+
+vs rabbitMQ
+
 cassandra 
 S3
 aws load balancer ELB
