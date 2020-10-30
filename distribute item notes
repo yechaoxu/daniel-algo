@@ -90,3 +90,25 @@ how to identify bottleneck:
 
 
 long pull vs websocket
+What is Long polling ?
+A variation of the traditional polling technique and allows emulation of an information push from a server to a client. With long polling, the client requests information from the server in a similar way to a normal poll.
+
+If the server does not have any information available for the client, instead of sending an empty response, the server holds the request and waits for some information to be available.
+Once the information becomes available (or after a suitable timeout), a complete response is sent to the client. The client will normally then immediately re-request information from the server, so that the server will almost always have an available waiting request that it can use to deliver data in response to an event.
+
+In a web/AJAX context, long polling is also known as Comet programming.	
+		
+		
+WebSockets provide a persistent connection between a client and server that both parties can use to start sending data at any time.
+
+The client establishes a WebSocket connection through a process known as the WebSocket handshake. This process starts with the client sending a regular HTTP request to the server.
+An Upgrade header is included in this request that informs the server that the client wishes to establish a WebSocket connection.
+Conclusion :
+
+If there is a need of Real time communication you can very well opt for websockets .
+
+But in Long Polling :
+
+A connection is held open between the web client and the web server so that when the server has new information it can push it to the client. 
+That request is then finished. A new request is then made between the client and the server and then wait for another update from the server. 
+The same TCP connection is generally open persistently throughout multiple requests due to HTTP/1.1 keep-alives.
