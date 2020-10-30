@@ -87,3 +87,6 @@ how to identify bottleneck:
   load test        we want to know how system can scale the 
   stress test   
   unit test   
+
+
+long pull vs websocket
