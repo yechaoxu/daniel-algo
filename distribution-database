@@ -58,4 +58,11 @@ MongoDB sharding setup: http://www.mongodb.org/display/DOCS/A+Sample+Configurati
 Cassandra distributed setup:
 http://wiki.apache.org/cassandra/GettingStarted
 
-In either case, auto-sharding is a killer feature of Cassandra, MongoDB, RIak, and most of the NoSQL solutions and tends to be one of _the_ reasons to use these systems over traditional RDBMS systems like MySQL. The first step is recognizing that if this is a feature you need, you should be looking at systems other than MySQL. Once you've decided that you're not going to reinvent sharding, it's a matter of deciding which system better fits your architecture and desired scaling strategy.
+In either case, auto-sharding is a killer feature of Cassandra, MongoDB, RIak, and most of the NoSQL solutions and tends to be one of _the_ reasons to use these systems over traditional RDBMS systems like MySQL. 
+The first step is recognizing that if this is a feature you need, you should be looking at systems other than MySQL. 
+Once you've decided that you're not going to reinvent sharding, it's a matter of deciding which system better fits your architecture and desired scaling strategy.
+
+
+database failover:
+  master-master replication.  all node can write data, and share load, achieve consistent via some consensus algo, complexcity is high, but low latency when write heavy
+  master-slave replication   one node is write, replicate to all slave nodes, high latency , suite for read heavy. 
