@@ -56,3 +56,33 @@ Things to go over.
         80/20, 20 percenrage user generate 80 percenrage traffic. 
         we can generate timeline in hybird ways: for normal user tweet. pre-update the timeline and cache it
                                                  for populate user/hot tweet, live pull from database and merge into cached timeline
+                                                 design tweeter. 
+	data size:
+		200 mill daily active user,  
+		each user favorite 5 tweets,  total 200 mill *b = 5b favorates
+		each user view timeline two times a day, and visit 5 other time lines.  each page 20 tweets. 
+		it will generate 200 mill * (2+5) * 20 =28 bill views a day. 
+		
+	system api:
+		post_tweet(user id, tweet, media_id[])  -> return url for posted tweet. 
+	
+	high level system:
+		it will be very read heavy, we need load balancer,   connecnts to application server, then to database, and storage service, 
+		also need cache sit between application server and database. 
+	
+	database schema:
+		tweet:
+		tweet id: user id: timestamp:content:num of favorates.
+		user:
+		user id: create date: last log in time: profile
+		favorate, user 1, tweet1, 
+		userfollow: user 1, user 2
+		
+		how to shard:
+			based on user id:
+				could bring issue on hot shards, and with ppl have lots of follower it will bring un evenly distributed . 
+			
+			based on tweet id:
+				each tweet will be randomly distributed across each shards, need a centralize server to aggreate all tweets for each user query. 
+
+
