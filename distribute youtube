@@ -1,0 +1,58 @@
+youtube, 
+	functional. 
+		upload video
+		watch video
+		comment/like video
+		follow other user 
+		news feed. 
+
+	nonfunctional
+		low latency
+		high availbility
+		persistent, video will not lost. 
+		
+	data measurement:
+	1 bill active user. 
+	1,000,000,000 * 20 min * (10mb/min) = 20,000,000,000*10mb =200 tb/min = 3th/s output
+	
+	API:
+		upload(user_id, video_title, tags, video content *pt)
+			return json object, (user_id, video_is, status)
+		stream_video( user_id, video_id, codec, resolution)
+			return media stream(content in chunk with offset)
+			
+	high-level:
+					user
+				upload/click/view
+					LB
+			web service/web service/web service
+																					message queue. 
+		upload service			tag/like/comment/follow service				encode service ( provide chunk of videos encoded)
+		
+		
+	user/metadata base     storage space(S3)       cache. 
+	
+	
+	database schma:
+		for video metadata, sql
+			video: title: description: tag: statistics( like/view/)
+			
+		for video comments: sql
+			videoid: time/comment
+		user storage: sql
+			user id: last log in/follower id:
+		
+		for content:
+			S3, 
+	
+		sharding:
+			we can shard via user id. but it will bring issue when user is popular, hot shard. 
+			we can shard via video id+ time stamp
+		
+	upload:
+			seperate video to smaller chunks and check checksum if its the same piece. 
+	we need to seperate read/write bandwidth, as write is more important. 
+	
+	CACHE:
+		can use memcacheor redis to cache video meta data, which offset of the current session is at which location. 
+		for large size content, CDN is used for distributed delivery, AkamaI
