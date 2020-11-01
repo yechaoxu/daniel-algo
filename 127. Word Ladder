@@ -1,0 +1,53 @@
+# double BFS approach
+
+
+class Solution(object):
+    def ladderLength(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+        """
+        
+        # double BFS we create two starting point from two ends. 
+        # and we can walk through, by math O(n) is much bigger than O(2/n) *2
+        wordList = set(wordList)
+        if endWord not in wordList:
+            return 0
+        visited_1 = dict()
+        visited_2 = dict()
+
+        from collections import deque
+        wave1 = deque()
+        wave1.append(beginWord)
+        wave2 = deque()
+        wave2.append(endWord)
+        step = 0
+        while wave1 and wave2:
+            if len(wave1)< len(wave2):
+                wave = wave1
+                visited = visited_1
+                target_set = visited_2
+            else:
+                wave = wave2
+                visited = visited_2
+                target_set = visited_1
+            l = len(wave)
+            step+=1
+            for _ in range(l):
+                curr = wave.popleft()
+                if curr in visited:
+                    continue
+                visited[curr] = 1
+                for i in range(len(curr)):
+                    for char in range(ord('a'), ord('z')+1):
+                        candidate = curr[:i] + chr(char) + curr[i+1:]
+
+                        if candidate in wordList:
+                            if candidate in target_set:
+
+                                return step
+                            wave.append(candidate)
+
+        return 0
