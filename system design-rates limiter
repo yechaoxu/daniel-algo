@@ -1,0 +1,22 @@
+design API rate limiter
+	functional requirement:
+		limit the number of request from a connections within a time window
+		the api should be accessed through a cluster, and is distributed for multiple nodes. 
+	
+	non-functional requirement:
+		system should have high availability, 
+		strong consistency
+		
+	3 type of throttling. 
+		hard throttling
+		soft throttling
+		dynamic throttling
+		
+		web reqeuest. 
+		
+			client id: ip+userid
+		
+		LB. -<->    throttle service( redis based semephore .)similar to distributed cache
+		
+				/\
+		reject		append the request to the process queue. 
