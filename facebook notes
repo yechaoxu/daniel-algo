@@ -1,0 +1,19 @@
+facebook auto scale:
+	because the peak request varies hour over hour. 
+facebook, shard manager:
+		one primary shard, multiple replica. strong data consisstent. 
+		in sharding, 
+			fault tolerance
+			load balancing
+			shard scaling
+			operational safety
+		sharding scaling. dynamically adjust number of shard
+		
+		
+facebook design:
+		news feed
+		web crawler
+		how to design post search
+		dashboards
+		
+	
