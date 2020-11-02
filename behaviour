@@ -1,9 +1,18 @@
 cases:
 	current project: eod performance imporvement
-		multi thread vs multi process. 
-		calculate price in memory. 
+		multi thread vs multi process.
+			the process is single threaded, thus we have to make it concurrent,  trade off multi process vs multi thread. 
+			the calc agent will be locked by the python global lock and is very i/o heavy, but multi process will be memory heavy, vs context switch by the lock. 
+			did the bench mark, and go with multi process.  we further benchmark the on-premises vs public cloud to tune the speed. 
+			
+		later on due to persistent database issue, we need to keep improving. we calculate the index level, and cached it. 
+		calculate price in memory, cache it.  
+		
+		
+		
 		concurrent all lagecy tech. 
-	
+		
+		
 	customer not happy, drive the in memory calculation, ( find out why, what is the pain point, how to address)
 	
 	
