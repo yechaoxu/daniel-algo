@@ -6,7 +6,7 @@ cases:
 			did the bench mark, and go with multi process.  we further benchmark the on-premises vs public cloud to tune the speed. 
 			
 		later on due to persistent database issue, we need to keep improving. we calculate the index level, and cached it. 
-		calculate price in memory, cache it.  
+		calculate price in memory, cache it in mongo database. 
 		
 		
 		
