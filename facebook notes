@@ -17,3 +17,18 @@ facebook design:
 		dashboards
 		
 	
+system-design-my-approach:
+
+1) clarify requirement. 
+2) functional requirement
+3) non-functional requirement
+4) exposure API for data in/out
+4) high level module. 
+5) star to scale, what trade off. 
+6) dive deep.
+
+3 common topic:
+	1) communication, via TCP or UDP, or RPC which is based on TCP/IP
+	
+	2) storage, sql vs no-sql 
+		non-sql key/value redis/memcache   document/json/store mongoDB       wide column: Hbase,its like a huge nested map. 
