@@ -1,0 +1,191 @@
+cases:
+	current project: eod performance imporvement
+		multi thread vs multi process. 
+		calculate price in memory. 
+		concurrent all lagecy tech. 
+	
+	customer not happy, drive the in memory calculation, ( find out why, what is the pain point, how to address)
+	
+	
+	disgree: sqllite hash function vs postgreSQL
+		asset holiday schedule change, disgree with manager. followed and suggest to have back-up plan in place. 
+	pround:  branch diverged between NY and LDN, due to LDN mono repo stcuture and left one critical lib due to regression test complex. 
+	
+	current challenge project: migration the strategy from py2 to py3. 
+	how do you find your way out of a complex big project:   	
+	
+	
+	team work:  how to shift work load between NY and LDN. 
+				
+	failure/learned:    wrong finance position reported, lack of unit test.  
+	recent project: trade off
+	
+	with boss: Dec 5th, 2018, national holiday, change all the schedules. 
+	
+	what time you took the lead on a project?
+						
+	other:				monte carlo simulation 
+	strength			persistency, release incident on ise release. 
+						
+
+
+1. 时间和进度管理
+（1）时间紧任务重怎么办？
+（2）同时做多个任务？
+
+
+
+
+
+
+2. 团队合作/解决冲突
+（1）团队合作解决问题的例子？
+（2）如果和其他人/老板意见不一致？
+
+3. 犯错解决/面临挑战
+（1）有没有犯错？
+（2）有没有阻止犯错？  
+（3）有没有遇到挑战？
+
+4. 主动解决问题/主动学习
+（1）有没有work beyond duty？  like to read blogs on system optimization
+（2）在空闲时间做什么？
+（3）有个技术难题，你会怎么解决？   what is the bottleneck, do we know why its not working. can we work around it. if not what tech stack should be used. if we are not familiar is theere existing industry solution. 
+
+
+亚麻比较独特的一个特点就是，喜欢出“负面”的BQ题。举例：
+（1）biggest mistake？
+（2）有没有miss过dealine？      
+（3）有没有和组里/老板有冲突？   asset schedule change,  valuation difference
+（4）有没有遇到过难以跨越的挑战？
+
+
+
+把握大方向
+Custom obsession强调拥护体验，围绕用户需求进行设计
+Think big 有大局观
+Insist on the highest standard 追求完美，不会满足于fix小问题
+Invent and simplify 不拘泥于现有技术，愿意发明新算法来解决新问题
+Frugality 不盲目增加成本
+XXX project
+- 跳出一般对XXX问题的认识，更多地考虑XXX是否是一个用户愿意用的方案。它和其它方案的差距在哪
+- 比如设计的时候会考虑用户交互的effort，假设是否实际等等
+- 这个虽然需要重新设计以跳出传统XXX的框架，开发成本更高有一定风险，但是觉得最终会带来良好的用户体验
+
+frugality
+- 一般YYY的办法是blahblah。这个setup很烧钱，研究了一番后使用了一个blahblah替代方案，它的成本是ccc块钱。
+- 即使公司很有钱，设计project的时候还是需要考虑硬件成本，因为需要考虑用户是不是卖得起。
+面对冲突／困难
+Ownership 对project有责任心，当作自己的career来做，而不是觉得就是一份工作
+Have backbone 有不同意见要坚决表达出来，但是群体意见形成以后，还是要commit wholely
+Bias for action及时动作，合理分析风险
+Earn trust 愿意听同事的意见
+Deliver results 及时deliver结果，respect deadline
+Ownership - backbone - deliver results
+- 去AAA公司实习的时候一开始给的问题是从XXX角度做YYY问题
+- 提出不同意见，觉得应该把问题设计得更用户友好...
+- mentor觉得可能问题太难做会有风险，于是拆成几个小块分别做出initial结果出来，分别设定了timeline/目标。 然后自己还设定了每天的小目标，尽量让所有的目标都是measurable的（比如具体小目标是blahblah，评价标准是blahblah)
+客观评价
+Are right, a lot 客观全面分析，对不确定的问题有vision
+Dive deep 碰到问题的时候通过metric有逻辑地解决，用数据backup，而不是随便make statement
+Bias for action - earn trust - deliver results - dive deep - are right a lot
+- 碰到过做XXX模块的时候，几个方案的相持不下
+- 每个方案都是直觉上觉得自己的idea最好，但是都觉得自己没有特别solid的理由
+- 最后决定先建数据集，罗列每个方案的假设，然后用数据集验证假设
+- 实验的顺序是先做好做的，再做难做的
+
+dive deep
+- 在AAA公司实习的时候，做的project比较成功，在领域里挺有impact的，但是我自己觉得对其中一块很不满意
+- 实习结束以后用业余时间开始研究剩下的一块，自己做了一些preliminary experiments，又摸索了一年
+- 感觉靠谱了以后回去找AAA公司进行了第二次合作，又发了第二个paper
+其它
+Learn and be curious 爱学习爱探索
+Hire and Develop the Best 愿意提拔（帮助，support)一样优秀的人(同事）
+身边很多做不同研究方向，各种专长的大神，经常跟他们讨论他们的project
+- 认为跟他们讨论重在交流，不是特别在意credit。从中可以学到东西本身是开心的事。
+- 有时候学的东西从知识上来说是没用的，但是方法是有启发性的。
+Behavior问题
+why Amazon
+大的busines platform，user base很大，觉得可以接触到challenging又实际的问题
+很多和engineering的interaction，觉得可以得到更多engineering sense，学习怎样deliver product
+亚麻本身technical和business都很重视，也比较感兴趣培养自己的business
+
+最自豪的项目
+XXX
+- 真正地让我开始考虑是做难的问题重要，还是做实际的问题重要
+- 从更深的层次考虑了很多一般做XXX的人不会考虑的问题，感觉自己的全局观巨大地提高了
+- 是做过的最复杂最难的project，从头到底很多innovation，intern结束的时候file了N个patent，很有成就感
+
+对一个问题，和老板同事发生了争执怎么办
+如果知道同事是错的，怎么办
+如果一个事情决定不下来,deadline又要到了，怎么办
+- 先考虑争执的点是哪里。是确定同事是错的，还是两个alternative觉得自己的略好一些。
+- 还有考虑时间是否紧迫
+- 如果同事是错的，那么还是要及时跟同事沟通。用data和逻辑说服他。
+- 如果只是不同alternative，那么特别是时间不够的时候，就不坚持自己的方案。
+- 如果时间也够，那么就跟同事罗列优缺点，两个alternative先试容易验证的一个。
+
+例子
+- project里一般不碰到这种情况，因为大多争议可以通过实验比较客观解决掉。
+- 写paper的时候碰到过。我想用方式A写，老板last minute说想用方式B重写，我个人觉得方式B过于aggressive, 也许收益大但是风险更大。
+- 最后coauthor把票投给了老板（因为觉得老板投paper比较有经验），于是focus on B，加班加点把paper改完了。
+- 投了之后paper跪了，原因和我预测的一样...
+- 事后评论：A和B的差异完全取决于主观因素，所以B不是错的，coauthor相信老板的经验也合理。最后paper跪了觉得也没事，因为事先整个team已经选择了take risk，那么就愿赌服输啦。
+
+怎么解决很tight的deadline
+怎么控制项目进度
+怎么测试项目
+如果再多点时间怎么改进
+- 事先定好小目标，确定每个目标expected完成时间和最长完成时间，最低完成度和最高完成度，排好优先级
+- 和同事／老板讨论confirm这个计划是可行的（尤其是如果需要同事配合，需要同事确认能allocate相应的时间／资源）
+- 如果发现这个plan表明了解决不了deadline，那么需要跟老板／比较有经验的同事谈，看是找更多的resource来加快进度，还是推迟deadline，以免custom有不合理的期待，还是先把基本功能做出来让custom能先使用
+
+有没有part是teammate来不及完成，你帮他们完成的
+- project里不太有，因为大多项目是1-N个mentor和我。XXX项目里公司那边的engineering更多定位在和我一起工作的peer，但是他们的时间管理非常好。只有一次YYY实验确实很花时间很困难，我们一起加班了几天完成的。
+- 别的场合有。比如实验室study group，别人忙的时候自己会多做一点supporting的活。但是这个帮助是相互的，我忙的时候别人也会support我，所以觉得挺好的。
+
+有没有在manager不在的时候做决定的事
+- 老板大多数时间会尽量保证meeting，所以这种经历很少。
+- 有一段时间老板出差out of internet，这个时候自己定计划，跟周围同学讨论，看他们从outsider的角度怎么看project。总之希望通过得到尽量多外部意见防止自己走偏。
+- 老板back on line之后第一时间跟老板sync
+
+有没有解决customer last min 需求的事
+- 因为research project，customer是潜在的（将来可能用这个方法的其他researcher，或如果工业化以后的用户）。所以没和具体的customer打过交道。
+- 不过如果碰到这样的问题，会看需求是需要小fix，还是大改变。
+- 如果是可行的小fix，或者team allocate多点resource可以解决的fix，会立刻根据customer的要求改变
+- 如果是大改变，可能会跟custom商量先给cu
+
+1. Can you describe your most difficult customer and how you were able to handle their needs?
+2. Can you tell me about a time when you were more than halfway through a project and had to pivot quickly due to an unexpected change? 
+How did you handle it?
+3. If one of your close work colleagues stole a $1 item, what would you do?
+
+Tell me about a time you faced a crisis at work. How did you handle it?
+Describe [Amazon product or service relevant to the role] as you would to a prospective customer.
+Can you tell me about a time you had to make a fast customer service decision without any guidance? How did you decide what to do?
+Tell me about a time that you dealt with a hostile customer.
+When given an unfamiliar task, how do you ensure you handle it properly?
+If you are given two conflicting priorities from two separate managers, how do you figure out how to proceed?
+Give me an example of when you received criticism. How did you respond to the information?
+What metrics do you use to drive positive change?
+If a supervisor asked you to do something unsafe that went against policy, what would you do?
+Tell me about a time when you were handling a project that went outside of your scope of work. How did you handle it?
+Describe a situation where you had to deal with ambiguity when making a decision.
+Can you tell me about a time when you had to make a decision when all of the data you needed was unavailable?
+Tell me about a time when you made a poor customer service decision. What steps did you take to remedy the situation?
+How do you keep yourself / your team / your colleagues motivated?
+What steps do you take to form positive and functional relationships with your colleagues?
+If a team member wasn’t pulling their weight, what would you do?
+What do you do to ensure that the customer experience is always a priority?
+How would you handle it if you discovered that your inventory levels were actually too high?
+Tell me about a time you disagreed with feedback you received. How did you address it?
+How do you handle a missed deadline / productivity target?
+What do you like most about Amazon? What do you like least?
+Describe an instance where you were overwhelmed while on the job. How did you handle it?
+Tell me about a time when you failed to meet expectations. What did you do to recover?
+How do you ensure that workplace safety is always a priority for you when you work?
+What steps do you take to make sure every customer you speak with is wowed?
+How do you make sure that you fully understand a customer’s needs?
+Tell me about the last time you had to apologize to someone.
+Are you able to handle the physical demands of a warehousing job?
+What qualities do you possess that will help you succeed with Amazon?
