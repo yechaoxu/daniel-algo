@@ -1,0 +1,46 @@
+news feed:
+	functional
+		news feed will be generates based on what that user follows, (other user, page, new post)
+		a user may follow many friends/groups
+		feeds will contain image, videos and text
+		system will support append new post as they arrive
+	
+	non-functional
+		system should have low latency. 
+		a post should take no more than 5 s to make to the end user. 
+		
+		
+	assume each user has 300 friends and follow 200 pages. 
+		assume 300, 000,000 daily active user. with each user fetch timeline 5 times a day. 
+		300, 000, 000 *5 = 1.5 B feeds request /day. 1500,000,000/24/3600 = ~~ /1000,00 = 15,000 fees /sec
+		storage . 
+			100 posts in every user's feed, 1kb per post. thats 1500,000 kb /sec = 1.5gb /sec traffic. 
+			
+	API:
+		pull:
+		get_user_feed(user_id, location, time_stamp)
+	database schmea:
+		user id:create time: profile:last login. 
+		
+		user follow:   user id: follower:id
+		media: content_id, description, location, create_date
+		feeds:  feed_id, post, media_id, create_time
+		
+	
+	feed generation service:
+		fetch all id/group this user follows. 
+		fetch all post from those id/groups, sorted by time or weights time. 
+		store the feeds into redis cache, and return top 20 post to jane's feed. 
+		return more post once user reach the end. 
+		
+		it will be really slow everytime user pull the data from sql database. what can we do. 
+		we pre-process the feeds , say every 5 mins, and save them into cache. 
+		so users can check if the feeds is already in cache, if so, fetch directly from redis. 
+		the pre-process generates user feed in the back-end, when we tunes, we can only cache the active user. 
+	feed publish:
+		it is called a fan-out, we should fan-out write for normal user, and fan-out read, for hot user. 
+		for fan-out write, user connect to service, and opens a long pull tcp connection. 
+		
+	sharding the feed cache:
+		since each user only keep 500 feeds, we can shark use user id. 
+	sharding the feeds table:
