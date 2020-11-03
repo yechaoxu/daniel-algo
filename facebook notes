@@ -32,3 +32,4 @@ system-design-my-approach:
 	
 	2) storage, sql vs no-sql 
 		non-sql key/value redis/memcache   document/json/store mongoDB       wide column: Hbase,its like a huge nested map. 
+	3) long pull if client constantly get updates, websocket for online chat system
