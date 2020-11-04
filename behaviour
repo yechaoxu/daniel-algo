@@ -22,24 +22,40 @@ cases:
 		
 	3)pround:  branch diverged between NY and LDN, due to LDN mono repo stcuture and left one critical lib due to regression test complex. 
 	
-	4)disagree: asset holiday schedule change  2018-Dec , GW.Bush passed away. , 
+	4)disagree: asset holiday schedule change  2018-Dec 5th or 8th ? , GW.Bush passed away. , 
 		    disgree with manager. followed and suggest to have back-up plan in place. 
 		    next day one of the strategy failed in a back test back to 2008 due to this change.  
 		    we went thourgh the impact, decide not to roll back the change, but went through the index committee and explain the root cause. 
-		    
+
+	5) team work: LDN and NY team use to work on the same products, but report to different line. 
+		      in this case, anything NY deployed and LDN sees in the morning, LDN takes long time to figure out, 
+		      		    anything LDN did, NY don't know. and either have to call or leave it broke until next day. 
+			action:	     migrate the git repo :
+				     cross share the tech stack and task. share pain point. 
+				     intentionly exchange talent cross projects, 
+			outcome:     we now have daily communication channel, each team knows what other side is doing. 
 	
 	
-	current challenge project: migration the strategy from py2 to py3. 
+	6) current challenge project: migration the strategy from py2 to py3. 
 	how do you find your way out of a complex big project:   	
 	what time you took the lead on a project? py2/py3 seperation. 
+		corba update. omnicorba, linkage between different platform. 
+		bazel build / pandas numpy scipy newer version. 
+		first build a dev platform ( very buggy), enforce staticilly link the object. 
+		when I joined, I noticed different ppl is risking step on each other's toes. 
+			1) unify the dev platform ( still buggy but evreyone buggy the same way), 
+			2)i purpose to high prioritize the unit test . 
+			3) move code to be as py2/py3 compatiable as possible. 
+			4)   
+			
 	
-	team work:  how to shift work load between NY and LDN. 
+	
+	
+	
+
 				
 	failure/learned:    wrong finance position reported, lack of unit test.  
 	recent project: trade off
-	
-	with boss: Dec 5th, 2018, national holiday, change all the schedules. 
-	
 	
 						
 	other:				monte carlo simulation 
