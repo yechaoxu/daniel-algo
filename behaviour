@@ -1,24 +1,32 @@
 cases:
 	current project: eod performance imporvement
+		most pround project. 
 		1)multi thread vs multi process.
 			the process is single threaded, thus we have to make it concurrent,  trade off multi process vs multi thread. 
 			the calc agent will be locked by the python global lock and is very i/o heavy, but multi process will be memory heavy, vs context switch by the lock. 
 			did the bench mark, and go with multi process.  we further benchmark the on-premises vs public cloud to tune the speed. 
 			
 		1.1)later on due to persistent database issue, we need to keep improving. we calculate the index level in memory, and cached it. 
+		( find out why, what is the pain point, how to address)
 
 		1.2) next step: concurrent all lagecy tech.   , should have thought this and make a common framework
 		
-		
-	 	1.3)drive the in memory calculation, ( find out why, what is the pain point, how to address)
+	 	1.3) now the goal is to catch up with bloomberg speed. 
 	
 	
 	2)disgree: sqllite hash function vs postgreSQL
-		   we sqlite with hash for few days, now we are discussiing switch to redis. 
+		   we sqlite with hash for few days, 
+		   ppl don't agree, I suggeest to put one asset class for this and see the performance, the asset has no trade thus lower risk. 
+		   it performs extreamly well due to no disk I/O blocking. 
+		   now we are discussiing switch to redis. 
 		
 	3)pround:  branch diverged between NY and LDN, due to LDN mono repo stcuture and left one critical lib due to regression test complex. 
 	
-	4)disagree: asset holiday schedule change, disgree with manager. followed and suggest to have back-up plan in place. 
+	4)disagree: asset holiday schedule change  2018-Dec , GW.Bush passed away. , 
+		    disgree with manager. followed and suggest to have back-up plan in place. 
+		    next day one of the strategy failed in a back test back to 2008 due to this change.  
+		    we went thourgh the impact, decide not to roll back the change, but went through the index committee and explain the root cause. 
+		    
 	
 	
 	current challenge project: migration the strategy from py2 to py3. 
