@@ -1,28 +1,29 @@
 cases:
 	current project: eod performance imporvement
-		multi thread vs multi process.
+		1)multi thread vs multi process.
 			the process is single threaded, thus we have to make it concurrent,  trade off multi process vs multi thread. 
 			the calc agent will be locked by the python global lock and is very i/o heavy, but multi process will be memory heavy, vs context switch by the lock. 
 			did the bench mark, and go with multi process.  we further benchmark the on-premises vs public cloud to tune the speed. 
 			
-		later on due to persistent database issue, we need to keep improving. we calculate the index level, and cached it. 
-		calculate price in memory, cache it in mongo database. 
+		1.1)later on due to persistent database issue, we need to keep improving. we calculate the index level in memory, and cached it. 
+
+		1.2) next step: concurrent all lagecy tech.   , should have thought this and make a common framework
 		
 		
-		
-		concurrent all lagecy tech. 
-		
-		
-	customer not happy, drive the in memory calculation, ( find out why, what is the pain point, how to address)
+	 	1.3)drive the in memory calculation, ( find out why, what is the pain point, how to address)
 	
 	
-	disgree: sqllite hash function vs postgreSQL
-		asset holiday schedule change, disgree with manager. followed and suggest to have back-up plan in place. 
-	pround:  branch diverged between NY and LDN, due to LDN mono repo stcuture and left one critical lib due to regression test complex. 
+	2)disgree: sqllite hash function vs postgreSQL
+		   we sqlite with hash for few days, now we are discussiing switch to redis. 
+		
+	3)pround:  branch diverged between NY and LDN, due to LDN mono repo stcuture and left one critical lib due to regression test complex. 
+	
+	4)disagree: asset holiday schedule change, disgree with manager. followed and suggest to have back-up plan in place. 
+	
 	
 	current challenge project: migration the strategy from py2 to py3. 
 	how do you find your way out of a complex big project:   	
-	
+	what time you took the lead on a project? py2/py3 seperation. 
 	
 	team work:  how to shift work load between NY and LDN. 
 				
@@ -31,7 +32,7 @@ cases:
 	
 	with boss: Dec 5th, 2018, national holiday, change all the schedules. 
 	
-	what time you took the lead on a project?
+	
 						
 	other:				monte carlo simulation 
 	strength			persistency, release incident on ise release. 
