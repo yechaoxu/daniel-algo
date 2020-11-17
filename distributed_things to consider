@@ -42,7 +42,8 @@ System design step:
   mention where could be the bottleneck , what can be done. 
   ask the interviewer what is his thoughts. 
 
-
+6. database design
+   what is the data access pattern, read? write? read/write ratio ? , how is read constructed?
 
 
 
