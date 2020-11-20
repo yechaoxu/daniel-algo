@@ -13,6 +13,10 @@ cases:
 		
 	 	1.3) now the goal is to catch up with bloomberg speed. 
 	
+	) can not meet timeline.
+		py2/py3 migration. CROBA is dynamically linked, thus link twice will crash the memory. 
+		thus we are facing a much larger scope( update omni CORBA version, reconfig bazel build)
+	
 	
 	2)disgree: sqllite hash function vs postgreSQL
 		   we sqlite with hash for few days, 
