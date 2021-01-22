@@ -1,0 +1,66 @@
+LME related futures: MAL, MCU, MNI, MPB, MSN, MZN, those are in London,
+ LME/Reuters vs BBG  
+"CFI": "MO",
+"CGB": "CN",
+"EBM": "CA",
+"LCO": "CO",
+"LGO": "QS",
+"LRC": "DF",
+"LSU": "QW",
+"MAL": "LA",
+"MCU": "LP",
+"MNI": "LN",
+"MPB": "LL",
+"MSN": "LT",
+"MZN": "LX",
+"OJ": "JO",
+"RB": "XB" 
+XTB:XM
+
+    "BO" : ("CBOT Bean Oil",            "Agriculture"),
+    "C"  : ("CBOT Corn",                "Agriculture"),
+    "CC" : ("NYBOT Cocoa",              "Agriculture"),
+    "CFI": ("ICE EUA Emissions",        "Energy"),
+    "CL" : ("NYMEX WTI Crude Oil",      "Energy"),
+    "CT" : ("NYBOT Cotton",             "Agriculture"),
+    "FC" : ("CME Feeder Cattle",        "Livestock"),
+    "GC" : ("COMEX Gold",               "Precious Metals"),
+    "HG" : ("COMEX High Grade Copper",  "Industrial Metals"),
+    "HO" : ("NYMEX Heating Oil",        "Energy"),
+    "KC" : ("NYBOT Coffee",             "Agriculture"),
+    "KW" : ("KCBOT Kansas Wheat",       "Agriculture"),
+    "LC" : ("CME Live Cattle",          "Livestock"),
+    "LCO": CO  ("ICE Brent Crude Oil",      "Energy"),
+
+    "LGO":QS ("ICE Gas Oil",              "Energy"),
+    "LH" : ("CME Lean Hogs",            "Livestock"),
+    "MAL": LA ("LME Aluminium",            "Industrial Metals"),
+    "MCU":  LP ("LME Copper",               "Industrial Metals"),
+    "MNI":  LN ("LME Nickel",               "Industrial Metals"),
+    "MPB": LL ("LME Lead",                 "Industrial Metals"),
+    "MSN": LT ("LME Tin",                  "Industrial Metals"),
+    "MZN":  LX ("LME Zinc"                 "Industrial Metals"),
+    "NG" : ("NYMEX Nat Gas",            "Energy"),
+    "OJ" : ("NYMEX Orange Juice",       "Agriculture"),
+    "PA" : ("COMEX Palladium",          "Precious Metals"),
+    "PL" : ("COMEX Platinum",           "Precious Metals"),
+    "RB" : XB("NYMEX Unleaded Gasoline",  "Energy"),
+    "S"  : ("CBOT Soybeans",            "Agriculture"),
+    "SB" : ("NYBOT Sugar",              "Agriculture"),
+    "SI" : ("COMEX Silver",             "Precious Metals"),
+    "SM" : ("CBOT Soy Meal",            "Agriculture"),
+    "W"  : ("CBOT Wheat",               "Agriculture"),
+    
+January   F
+February  G
+March H
+April   J
+May    K
+June   M
+July    N
+August Q
+September    U
+October    V
+November X
+December Z
+
